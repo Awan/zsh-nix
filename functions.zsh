@@ -2,16 +2,16 @@
 
 # In the name of Allah, the most Gracious, the most Merciful.
 #
-#  ▓▓▓▓▓▓▓▓▓▓ 
-# ░▓ Author ▓ Abdullah <https://abdullah.today> 
-# ░▓▓▓▓▓▓▓▓▓▓ 
-# ░░░░░░░░░░ 
+#  ▓▓▓▓▓▓▓▓▓▓
+# ░▓ Author ▓ Abdullah <https://abdullah.today>
+# ░▓▓▓▓▓▓▓▓▓▓
+# ░░░░░░░░░░
 
 
 # ░█▀▀░█░█░█▀▀░█░░░█░░░░░█▀▀░█░█░█▀█░█▀▀░▀█▀░▀█▀░█▀█░█▀█░█▀▀
 # ░▀▀█░█▀█░█▀▀░█░░░█░░░░░█▀▀░█░█░█░█░█░░░░█░░░█░░█░█░█░█░▀▀█
 # ░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀▀▀░░░▀░░░▀▀▀░▀░▀░▀▀▀░░▀░░▀▀▀░▀▀▀░▀░▀░▀▀▀
- 
+
 
 mkd ()
 {
@@ -23,7 +23,7 @@ mkd ()
 webm2mp4 ()
 {
   for file in *.webm
-  do 
+  do
     ffmpeg -i "$file" "`basename "$file" .webm`.mp4"
   done
 }
@@ -91,7 +91,7 @@ aactomkv ()
   for files in *.aac
   do
     ffmpeg -y -loop 1 -framerate 1/25 -i image.jpg  -i "$file" -vf "scale='min(1280,iw)':-2, format=yuv420p" -c:v libx264 -preset veryslow -crf 0 -c:a copy  "`basename "$file" .aac`.mkv" 
-  done 
+  done
 }
 
 
@@ -102,7 +102,7 @@ hdimg () {
 
   ext="$1"
   mkdir resized 2>/dev/null
-  
+
   for file in *."$ext"
   do
     convert $file -resize 1920x1080! resized/`basename $file .$ext`.$ext
@@ -168,7 +168,7 @@ di ()
 
 bakchod ()
 {
-  echo "$@" | tr a-zA-Z n-za-mN-ZA-M 
+  echo "$@" | tr a-zA-Z n-za-mN-ZA-M
 }
 
 # mailto
@@ -178,8 +178,8 @@ mailto ()
   $TERMINAL -e mutt "$@"
 }
 
-aa_256 () 
-{ 
+aa_256 ()
+{
   local o= i= x=`tput op` cols=`tput cols` y= oo= yy=;
   y=`printf %$(($cols-6))s`;
   yy=${y// /=};
@@ -191,11 +191,11 @@ aa_256 ()
   done
 }
 
-ht() { 
+ht() {
   a=$(cat); curl -X POST -s -d "$a" https://hastebin.com/documents | awk -F '"' '{print "https://hastebin.com/"$4}' | xclip ; 
 }
 
-fs() 
+fs()
 {
   if du -b /dev/null > /dev/null 2>&1; then
     local arg=-sbh;
@@ -209,7 +209,7 @@ fs()
     fi;
   }
 
-dataurl() 
+dataurl()
 {
   local mimeType=$(file -b --mime-type "$1");
   if [[ $mimeType == text/* ]]; then
@@ -218,7 +218,7 @@ dataurl()
   echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
 }
 
-escape() 
+escape()
 {
   printf "\\\x%s" $(printf "$@" | xxd -p -c1 -u);
   # print a newline unless we’re piping the output to another program
@@ -227,7 +227,7 @@ escape()
     fi;
   }
 
-# v() 
+# v()
 # {
 #   if [ $# -eq 0 ]; then
 #     $EDITOR .;
@@ -235,8 +235,8 @@ escape()
 #     $EDITOR "$@";
 #     fi;
 #   }
-# 
-o() 
+#
+o()
 {
   if [ $# -eq 0 ]; then
     ranger .;
@@ -245,7 +245,7 @@ o()
     fi;
   }
 
-tre() 
+tre()
 {
   tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
@@ -290,8 +290,8 @@ webcam () {
 }
 
 psg () {
-  pass generate "$1"  --clip
-  cd ~/.password-store
+  passage generate "$1"  --clip
+  cd ~/.passage/store/
   git push
   cd -
 }
@@ -312,7 +312,7 @@ cnst () {
   sudo /etc/rc.d/crond status
 }
 
-ko () { 
+ko () {
   a=$(cat)
   curl -X POST -s -d "raw:$a" http://kopy.io/documents | awk -F '"' '{print "http://kopy.io/"$4}'
 }
@@ -358,7 +358,7 @@ ap()
 
 gct()
 {
-  token=$(pass gist/github)
+  token=$(passage gist/github)
   curl -u Awan:$token -X POST https://api.github.com/user/repos -d '{"name":"'$1'"}'
   git init
   git remote add origin git@github.com:Awan/$1.git
@@ -433,7 +433,7 @@ arec ()
   arecord -vv -f wav "$1"
 }
 
-ram () 
+ram ()
 {
 	local sum
 	local items
@@ -454,7 +454,7 @@ ram ()
 	fi
 }
 
-pdfmerge () 
+pdfmerge ()
 {
 	local tomerge
 	tomerge=""
@@ -579,7 +579,7 @@ tf ()
 
 aur ()
 {
-  cd $HOME/git 
+  cd $HOME/git
   package_name="$1"
   aur_url="https://aur.archlinux.org"
   git clone $aur_url/$package_name
@@ -750,8 +750,8 @@ dua() {
 }
 
 sitemap() {
-  # submit sitemap to google 
-  # For simplicity, add sitemap to robots.txt and then use this function to 
+  # submit sitemap to google
+  # For simplicity, add sitemap to robots.txt and then use this function to
   # update it in Google like this: sitemap https://abdullah.today/robots.txt
   google_url="https://www.google.com/webmasters/sitemaps/ping?sitemap="
   path=$1
@@ -759,7 +759,7 @@ sitemap() {
 }
 
 baqara() {
-  /usr/bin/mpv --no-resume-playback ~/haq/shuraim/002{001..286}.mp3 
+  /usr/bin/mpv --no-resume-playback ~/haq/shuraim/002{001..286}.mp3
 }
 
 gifspeed() {
@@ -776,7 +776,7 @@ gifspeed() {
 
 mkuser () {
   # Create a new user with creating new homedir, zsh as shell, adding it to
-  # audio, video and wheel group 
+  # audio, video and wheel group
 
   username="$1"
   sudo useradd -m -G wheel,input,audio,video -s `which zsh` "$username" && sudo passwd "$username"
@@ -790,7 +790,7 @@ Q () {
   Qari="$3"
   path="$HOME/haq/sudais/"
   [ -z "$Qari" ] && path="$HOME/haq/shuraim/"
- 
+
   if [ -z "$Surah" ] || [ -z "$Ayah" ]; then
     exit 1
   fi
@@ -852,7 +852,7 @@ getscr() {
     echo $scrot_dir$new_scrot_file.png && \
     notify-send -t 3500 -i \
     $HOME/.local/share/icons/drops/imgur.png \
-    "Screenshot saved: $new_scrot_file.png" 
+    "Screenshot saved: $new_scrot_file.png"
   feh $scrot_dir$new_scrot_file.png
 }
 
@@ -872,7 +872,7 @@ hg () {
   cd public && echo "add your files and commit them!"
 }
 
-dep () 
+dep ()
 {
   # deploy changes to website after you have pushed the master repo with same
   # commit message
@@ -887,11 +887,11 @@ dep ()
   git add .
   echo "Run git status and commit now!"
   git commit -am "$msg" && git push; cd "$source_dir"; git push
-  echo "$site_url is live now!" 
+  echo "$site_url is live now!"
 }
 
 hgn ()
-{ 
+{
   arg="$@"
   if [ -z $arg ]; then
     echo "Please give me a name!"
@@ -932,7 +932,7 @@ isinstalled () {
     return 0
 }
 
-newest () 
+newest ()
 {
     /usr/bin/ls -Art $1* | tail -n 1
 }
@@ -1004,7 +1004,7 @@ rtty()
 {
     # record my tty for youtube
     today="$HOME/you/yt-"$(date +%F_%T)
-    ffmpeg -f pulse -ac 2 -i default -f fbdev -r 30 -i /dev/fb0 -acodec pcm_s16le -vcodec libx264 -preset ultrafast -threads 0 -vf "drawtext=text='Follow me on   AbdullahToday  AbdullahToday  AbdullahToday  https\://abdullah.today':y=h-line_h-50:x=if(eq(t\,0)\,w\,if(lt(x\,(0-tw))\,w\,x-4)):fontsize=75:fontfile=/usr/share/fonts/nerd-fonts-complete/TTF/Go Mono Nerd Font Complete.ttf:fontcolor=white" $today.mkv 
+    ffmpeg -f pulse -ac 2 -i default -f fbdev -r 30 -i /dev/fb0 -acodec pcm_s16le -vcodec libx264 -preset ultrafast -threads 0 -vf "drawtext=text='Follow me on   AbdullahToday  AbdullahToday  AbdullahToday  https\://abdullah.today':y=h-line_h-50:x=if(eq(t\,0)\,w\,if(lt(x\,(0-tw))\,w\,x-4)):fontsize=75:fontfile=/usr/share/fonts/nerd-fonts-complete/TTF/Go Mono Nerd Font Complete.ttf:fontcolor=white" $today.mkv
 }
 
 rarea()
@@ -1023,11 +1023,6 @@ rec4mobi()
     today="$HOME/you/mob-"$(date +%F_%T)
     ffmpeg -f pulse -ac 2 -i default -f x11grab -r 30 -s 1920x1080 -i :0.0 -acodec aac -b:a 320k -ar 48000 -vcodec libx264 -preset ultrafast -b:v 15M -threads 4 -pix_fmt yuv420p -cpu-used 0 $today.mp4
 
-}
-
-drd()
-{
-feh --bg-scale '/home/ak/pix/wall/collection/470768.jpg'
 }
 
 andvid()
