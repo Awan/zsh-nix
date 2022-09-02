@@ -147,21 +147,21 @@ mergeaudiotovideo ()
 apply ()
 {
 
-  gpg -dq $HOME/bin/misc/job.gpg | mutt -s "Applying for Job"  $1
+  gpg -dq $HOME/bin/misc/job.gpg | neomutt -s "Applying for Job"  $1
 }
 
 # Encrypt a file to myself
 
 ei ()
 {
-  gpg -er 5CBC7BC7 $1
+  age -e -R ~/.age-recipients $1
 }
 
 # Decrypt a file
 
 di ()
 {
-  gpg -do $1 $2
+ age -d $1.age -i ~/.ak.txt $1
 }
 
 # Bakchod
@@ -175,7 +175,7 @@ bakchod ()
 
 mailto ()
 {
-  $TERMINAL -e mutt "$@"
+  $TERMINAL -e neomutt "$@"
 }
 
 aa_256 ()
