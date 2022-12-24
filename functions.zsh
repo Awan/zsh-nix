@@ -1082,3 +1082,10 @@ geometry() {
         echo "Please install slop first..."
     fi
 }
+
+tlogo() {
+   orig_video="$1" 
+   output="$2"
+   ffmpeg -i $orig_video -vf "drawtext=text='© AK 0300-8310777':y=h-line_h-50:x=if(eq(t\,0)\,w\,if(lt(x\,(0-tw))\,w\,x-4)):fontsize=75:fontcolor=black:box=1:boxcolor=white@0.5: boxborderw=5" -c:a copy $output
+
+}
